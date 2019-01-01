@@ -1,0 +1,48 @@
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://106.12.124.234:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instanceId: ${spring.application.name}:${random.value}
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: *
+
+#security:
+#  oauth2:
+#    sso:
+#      loginPath: /login   # 登录路径
+#    resource:
+#      id: devglan-client
+#      user-info-uri: http://localhost:5002
+#    client:
+#      client-id: devglan-client
+#      client-secret: devglan-secret
+
+#security:
+#  user:
+#    password: password
+
+#security:
+#  basic: # 启用基本身份认证
+#    enabled: false
+#  user:
+#    name: makelife
+#    password: makelife!qaz
+#
+#  oauth2:
+#    resource:
+#      id: front-server
+#      filter-order: 3
+#
+# 去掉springboot-actuator 鉴权
+#management:
+#  security:
+#    enabled: false
+
+

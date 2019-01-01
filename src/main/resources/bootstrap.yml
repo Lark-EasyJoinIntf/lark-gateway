@@ -1,0 +1,38 @@
+
+spring:
+  application:
+    name: lark-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+        enabled: true
+
+      routes:
+      - id: user-service-api
+        uri: lb://user-service
+        predicates:
+        - Path=/user-api/**
+        filters:
+        - StripPrefix=1
+
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':
+#            allowedOrigins: "*"
+#            allowedMethods:
+#            - GET
+
+
+#logging:
+#  config: classpath:logback-spring.xml
+#  path: '${user.home}/logs/${spring.application.name}'
+
+
+#开启actuator管理api，后面要关闭
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

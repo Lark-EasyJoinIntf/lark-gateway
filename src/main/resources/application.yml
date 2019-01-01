@@ -1,0 +1,14 @@
+server:
+  port: 5002
+
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  profiles:
+    active: dev
+  redis:
+      url: redis://127.0.0.1:6379
+      database: 1
+
