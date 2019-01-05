@@ -10,19 +10,12 @@ spring:
         enabled: true
 
       routes:
-      - id: user-service-api
-        uri: lb://user-service
+      - id: lark-resource
+        uri: lb://lark-resource
         predicates:
         - Path=/user-api/**
         filters:
         - StripPrefix=1
-
-#      globalcors:
-#        cors-configurations:
-#          '[/**]':
-#            allowedOrigins: "*"
-#            allowedMethods:
-#            - GET
 
 
 #logging:

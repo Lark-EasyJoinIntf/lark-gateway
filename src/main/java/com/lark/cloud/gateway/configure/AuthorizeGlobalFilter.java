@@ -6,6 +6,7 @@
 //import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 //import org.springframework.cloud.gateway.filter.GlobalFilter;
 //import org.springframework.core.Ordered;
+//import org.springframework.core.io.buffer.DataBuffer;
 //import org.springframework.data.redis.core.StringRedisTemplate;
 //import org.springframework.http.HttpHeaders;
 //import org.springframework.http.HttpStatus;
@@ -14,6 +15,10 @@
 //import org.springframework.stereotype.Component;
 //import org.springframework.web.server.ServerWebExchange;
 //import reactor.core.publisher.Mono;
+//
+//import java.nio.charset.StandardCharsets;
+//import java.util.HashMap;
+//import java.util.Map;
 //
 ///**
 // * token校验全局过滤器
@@ -47,7 +52,17 @@
 //        ServerHttpResponse response = exchange.getResponse();
 //        if (StringUtils.isEmpty(token) || StringUtils.isEmpty(uid)) {
 //            response.setStatusCode(HttpStatus.UNAUTHORIZED);
-//            return response.setComplete();
+//
+//            Map<String,Object> result=new HashMap<>();
+//            result.put("status",-1);
+//            result.put("msg","token 错误");
+//
+//
+////            byte[] bytes = "{\"status\":\"-1\",\"msg\":\"error\"}".getBytes(StandardCharsets.UTF_8);
+////            DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(bytes);
+//            DataBuffer buffer = exchange.getResponse().bufferFactory().wrap(result.toString().getBytes());
+//            return response.writeWith(Mono.just(buffer));
+////            return response.setComplete();
 //        }
 //        String authToken = stringRedisTemplate.opsForValue().get(uid);
 //        if (authToken == null || !authToken.equals(token)) {
